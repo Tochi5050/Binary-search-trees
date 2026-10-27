@@ -24,55 +24,19 @@ root = n1
 
 class Solution:
     def __init__(self):
-        self.left_highest = [float("-inf")]
-        self.right_lowest = [float("inf")]
-        self.hashMap = {}
-    def isValidBST(self, root: TreeNode | None, pos) -> bool:
+        self.res = float("-inf")
 
+    def isValidBST(self, root: TreeNode | None) -> bool:
         if root is None:
             return True
 
-        self.hashMap[root] = root.val
-
-        if self.isValidBST(root.left, "left") and self.isValidBST(root.right, "right"):
-            if root.left is not None and root.right is not None:
-                if self.hashMap[root.left] < self.hashMap[root] and self.hashMap[root.right] > self.hashMap[root] and pos == "left":
-                    self.hashMap[root] = self.hashMap[root.right]
-                    return True
-
-                elif self.hashMap[root.left] < self.hashMap[root] and self.hashMap[root.right] > self.hashMap[root] and pos == "right":
-                    self.hashMap[root] = self.hashMap[root.left]
-                    return True
-
-                else:
-                    return False
-
-            elif root.left is not None and root.right is None:
-                if self.hashMap[root.left] < self.hashMap[root] and pos == "left":
-                    self.hashMap[root] = self.hashMap[root.right]
-                    return True
-                elif self.hashMap[root.left] < self.hashMap[root] and pos == "right":
-                    self.hashMap[root] = self.hashMap[root.left]
-                    return True
-                else:
-                    return False
-
-            elif root.left is None and root.right is not None:
-                if self.hashMap[root.right] > self.hashMap[root] and pos == "left":
-                    self.hashMap[root] = self.hashMap[root.right]
-                    return True
-                elif self.hashMap[root.right] > self.hashMap[root] and pos == "right":
-                    self.hashMap[root] = self.hashMap[root.left]
-                    return True
-                else:
-                    return False
-            else:
-                return True
-
-        return False
-
-
+        if not self.isValidBST(root.left):
+            return False
+        if root.val <= self.res:
+            return False
+        self.res = root.val
+        return self.isValidBST(root.right)
 
 
 result = Solution()
-print(result.isValidBST(root, "left"))
+print(result.isValidBST(root))
