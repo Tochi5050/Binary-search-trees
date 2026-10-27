@@ -35,31 +35,7 @@ class Solution:
 
         print(root.val, pos)
 
-        # if root is None:
-        #     return True
-        #
-        # if self.isValidBST(root.left, "left") and self.isValidBST(root.right, "right"):
-        #     if root.left is not None and root.right is not None:
-        #         if root.left.val <= root.val and root.right.val >= root.val:
-        #             return True
-        #         else:
-        #             return False
-        #
-        #     elif root.left is not None and root.right is None:
-        #         if root.left.val <= root.val:
-        #             return True
-        #         else:
-        #             return False
-        #
-        #     elif root.left is None and root.right is not None:
-        #         if root.right.val >= root.val:
-        #             return True
-        #         else:
-        #             return False
-        #     else:
-        #         return True
-        #
-        # return False
+
 
 
 
